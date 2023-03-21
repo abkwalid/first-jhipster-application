@@ -1,0 +1,31 @@
+{
+  "firstJhipsterApplicationApp": {
+    "dailyTaskLog": {
+      "home": {
+        "title": "Daily Task Logs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Daily Task Log",
+        "createOrEditLabel": "Create or edit a Daily Task Log",
+        "notFound": "No Daily Task Logs found"
+      },
+      "created": "A new Daily Task Log is created with identifier {{ param }}",
+      "updated": "A Daily Task Log is updated with identifier {{ param }}",
+      "deleted": "A Daily Task Log is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Daily Task Log {{ id }}?"
+      },
+      "detail": {
+        "title": "Daily Task Log"
+      },
+      "id": "ID",
+      "employee": "Employee",
+      "customer": "Customer",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "breakTotalMinutes": "Break Total Minutes",
+      "help": {
+        "employee": "The daily task log details."
+      }
+    }
+  }
+}
