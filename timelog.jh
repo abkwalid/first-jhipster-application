@@ -1,0 +1,11 @@
+entity DailyTaskLog {
+	/**
+	* The daily task log details.
+	*/
+	employee String required minlength(3),
+	customer String required minlength(3),
+	startDate Instant,
+    endDate Instant,
+	breakTotalMinutes Long
+	
+}

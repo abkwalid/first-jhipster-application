@@ -1,0 +1,116 @@
+<div>
+  <h2 id="page-heading" data-cy="DailyTaskLogHeading">
+    <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.home.title">Daily Task Logs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-daily-task-log"
+        [routerLink]="['/daily-task-log/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.home.createLabel"> Create a new Daily Task Log </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="dailyTaskLogs?.length === 0">
+    <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.home.notFound">No Daily Task Logs found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="dailyTaskLogs && dailyTaskLogs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="employee">
+            <div class="d-flex">
+              <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.employee">Employee</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customer">
+            <div class="d-flex">
+              <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.customer">Customer</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startDate">
+            <div class="d-flex">
+              <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.startDate">Start Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <div class="d-flex">
+              <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.endDate">End Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="breakTotalMinutes">
+            <div class="d-flex">
+              <span jhiTranslate="firstJhipsterApplicationApp.dailyTaskLog.breakTotalMinutes">Break Total Minutes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dailyTaskLog of dailyTaskLogs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/daily-task-log', dailyTaskLog.id, 'view']">{{ dailyTaskLog.id }}</a>
+          </td>
+          <td>{{ dailyTaskLog.employee }}</td>
+          <td>{{ dailyTaskLog.customer }}</td>
+          <td>{{ dailyTaskLog.startDate | formatMediumDatetime }}</td>
+          <td>{{ dailyTaskLog.endDate | formatMediumDatetime }}</td>
+          <td>{{ dailyTaskLog.breakTotalMinutes }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/daily-task-log', dailyTaskLog.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/daily-task-log', dailyTaskLog.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(dailyTaskLog)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

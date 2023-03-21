@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20230321211126",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "daily_task_log",
+  "fields": [
+    {
+      "fieldName": "employee",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3",
+      "javadoc": "The daily task log details."
+    },
+    {
+      "fieldName": "customer",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "breakTotalMinutes",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DailyTaskLog",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}
